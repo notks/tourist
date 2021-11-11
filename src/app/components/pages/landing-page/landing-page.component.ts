@@ -13,8 +13,7 @@ export class LandingPageComponent implements OnInit {
   public query:any;
   public status:any;
   selected = 0;
-  hovered = 0;
-  readonly = false;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -36,9 +35,36 @@ export class LandingPageComponent implements OnInit {
   }
 
   onClick(query:any):void{
+    fetch(`http://127.0.0.1:8080/locations/name/${query}`)
+      .then((response) => response.json())
+      .then((response) => {
+        response.forEach(async (location: any) => {
+          await fetch(`http://127.0.0.1:8080/picture?id=${location.id}`)
+            .then((urls) => urls.json())
+            .then((imageurl) => {
+              location.url = imageurl.url;
+
+              this.Locations = response;
+            });
+        });
+      });
+  
     console.log(query)
   }
   select(status:any):void{
+    fetch(`http://127.0.0.1:8080/locations/importance/${status}`)
+    .then((response) => response.json())
+    .then((response) => {
+      response.forEach(async (location: any) => {
+        await fetch(`http://127.0.0.1:8080/picture?id=${location.id}`)
+          .then((urls) => urls.json())
+          .then((imageurl) => {
+            location.url = imageurl.url;
+
+            this.Locations = response;
+          });
+      });
+    });
    
     console.log(status)
   }

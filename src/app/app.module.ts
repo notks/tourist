@@ -9,6 +9,7 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/template/carousel/carousel.component';
+import { CardComponent } from './components/template/card/card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CarouselComponent } from './components/template/carousel/carousel.compo
     LandingPageComponent,
     LoginComponent,
     AdminComponent,
-    CarouselComponent
+    CarouselComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

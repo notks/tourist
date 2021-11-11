@@ -1,0 +1,17 @@
+
+  <div class="card" style="width: 300px">
+    <app-carousel [data]="l.url" index="{{ index }}"></app-carousel>
+
+    <div class="card-body">
+      <h5 class="card-title">{{l.name}}</h5>
+      <p class="card-text">
+       {{l.description}}
+      </p>
+      <p>Long:{{l.longitude}} Lat:{{l.latitude}}</p>
+      <p>Average rating</p>
+      <ngb-rating [max]="5" [rate]="AverageRating" #newRating (click)="updateRating(newRating.nextRate)"></ngb-rating>
+      <hr>
+      
+   
+    </div>
+  </div>

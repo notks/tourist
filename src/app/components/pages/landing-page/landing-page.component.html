@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
   
-    <form class="form-control">
+    <form class="form-control" style="height: 50px;" >
         <div class="row" >
             <div class="col"><input
                 class="form-control "
@@ -33,16 +33,7 @@
 </nav>
 <div class="container_grid">
   <div *ngFor="let location of Locations; index as i" style="margin: 10px">
-    <div class="card" style="width: 300px">
-      <app-carousel [data]="location.url" index="{{ i }}"></app-carousel>
-
-      <div class="card-body">
-        <h5 class="card-title">{{location.name}}</h5>
-        <p class="card-text">
-         {{location.description}}
-        </p>
-    
-      </div>
-    </div>
+  <app-card [l]="location" index={{i}} ></app-card>
   </div>
 </div>
+
