@@ -1,0 +1,23 @@
+<div >
+
+    <div [id]="'carousel'+index" class="carousel slide" data-bs-ride="carousel"  style="width: 300px; height: 200px;">
+     
+        <div class="carousel-inner" *ngIf="data">
+          <div class="carousel-item " data-bs-interval="10000" *ngFor="let img of data; first as isfirst;" [class.active]=isfirst >
+              
+             <img src={{img}}  class="d-block w-100 pl_hld" alt="..." style="max-width: 300px; max-height: 200px; object-fit: cover;"/>
+          </div>
+          
+         
+        </div>
+        <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel'+index"  data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel'+index" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    

@@ -1,9 +1,48 @@
-<div class="container">
-  <div class="row height d-flex justify-content-center align-items-center">
-      <div class="col-md-6">
-          <div class="form"> <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Search anything..."> <span class="left-pan"><i class="fa fa-microphone"></i></span> </div>
+<nav class="navbar navbar-light bg-light">
+  
+    <form class="form-control">
+        <div class="row" >
+            <div class="col"><input
+                class="form-control "
+                type="text"
+               #query
+                name="search_query"
+                id="search_q"
+                placeholder="Search locations by name"
+             
+              />
+            </div>
+            <div class="col">              <button class="btn btn-success" type="button" (click)="$event.preventDefault;onClick(query.value);">Search</button>
+            </div>
+            <div class="col"> 
+                <select class="form-control " #status  name="status" id="status" style="position: relative; right: 20px;" (change)="select(status.value)">
+                <option hidden > All</option>
+                <option value="znamenito">Znamenito</option>
+                <option value="veoma znamenito">Veoma znamenito</option>
+    
+                <option value="nezaobilazno">Nezaobilazno</option>
+    
+            </select></div>
+        </div>
+      
+       
+
+      
+    </form>
+  
+</nav>
+<div class="container_grid">
+  <div *ngFor="let location of Locations; index as i" style="margin: 10px">
+    <div class="card" style="width: 300px">
+      <app-carousel [data]="location.url" index="{{ i }}"></app-carousel>
+
+      <div class="card-body">
+        <h5 class="card-title">{{location.name}}</h5>
+        <p class="card-text">
+         {{location.description}}
+        </p>
+    
       </div>
+    </div>
   </div>
 </div>
-
-
