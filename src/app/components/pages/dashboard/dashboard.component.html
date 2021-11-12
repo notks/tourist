@@ -1,0 +1,16 @@
+<div *ngIf="auth">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex; justify-content: space-between;">
+        <a class="navbar-brand" href="#">{{email}}</a>
+              <button class="btn btn-outline-danger" (click)="logOut()">Log out</button>
+           
+      </nav>
+  <div class="container_grid" >
+  <div *ngFor="let location of Locations; index as i" style="margin: 10px">
+  <app-cardeditable [l]="location" index={{i}} ></app-cardeditable>
+  </div>
+</div>
+</div>
+<div *ngIf="!auth">
+
+    
+</div>

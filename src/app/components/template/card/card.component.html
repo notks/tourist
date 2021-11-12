@@ -7,7 +7,8 @@
       <p class="card-text">
        {{l.description}}
       </p>
-      <p>Long:{{l.longitude}} Lat:{{l.latitude}}</p>
+      <p>Category: {{l.istatus}}</p>
+      <p>Long:{{l.long}} Lat:{{l.lat}}</p>
       <p>Average rating</p>
       <ngb-rating [max]="5" [rate]="AverageRating" #newRating (click)="updateRating(newRating.nextRate)"></ngb-rating>
       <hr>

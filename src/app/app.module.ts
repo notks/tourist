@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/template/carousel/carousel.component';
 import { CardComponent } from './components/template/card/card.component';
+import { RegisterComponent } from './components/pages/register/register.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { CardeditableComponent } from './components/template/cardeditable/cardeditable.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CardComponent } from './components/template/card/card.component';
     LoginComponent,
     AdminComponent,
     CarouselComponent,
-    CardComponent
+    CardComponent,
+    RegisterComponent,
+    DashboardComponent,
+    CardeditableComponent
   ],
   imports: [
     BrowserModule,

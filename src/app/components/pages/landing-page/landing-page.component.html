@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
   
-    <form class="form-control" style="height: 50px;" >
+    <form class="form-control" style="height: 50px;" (submit)="$event.preventDefault();" >
         <div class="row" >
             <div class="col"><input
                 class="form-control "
@@ -31,9 +31,12 @@
     </form>
   
 </nav>
-<div class="container_grid">
+<div class="container_grid" >
   <div *ngFor="let location of Locations; index as i" style="margin: 10px">
   <app-card [l]="location" index={{i}} ></app-card>
   </div>
 </div>
+
+
+
 

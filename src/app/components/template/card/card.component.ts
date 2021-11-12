@@ -14,7 +14,7 @@ NewRating=0
   constructor() { }
 
   ngOnInit(): void {
-
+console.log(this.l)
     fetch(`http://127.0.0.1:8080/rating?id=${this.l.id}`)
     .then((response) => response.json())
     .then((rating) => {
