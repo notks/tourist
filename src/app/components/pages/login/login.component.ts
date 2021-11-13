@@ -13,8 +13,7 @@ msg:string=""
   ngOnInit(): void {
   }
   login(email:string,password:string):void{
-    console.log(email)
-    console.log(password)
+   
 fetch(`http://127.0.0.1:8080/login?email=${email}&pwd=${password}`).then(res=>res.json()).then(response=>{
   if(response.token){
     localStorage.setItem("authToken",response.token)

@@ -2,6 +2,8 @@
     <div class="row justify-content-center align-items-center" style="height:100vh">
         <div class="col">
             <div class="card">
+                <h2 class="card-title ">Login</h2>
+
                 <div class="card-body">
                     {{this.msg}}
                     <form  (submit)="$event.preventDefault();">
@@ -14,7 +16,7 @@
 
                             <input type="password" #password class="form-control" name="password">
                         </div>
-                        <button type="btn" id="sendlogin" class="btn btn-primary" (click)="$event.preventDefault();login(email.value,password.value);">login</button>
+                        <button type="btn" id="sendlogin" class="btn btn-primary" (click)="$event.preventDefault();login(email.value,password.value);">Login</button>
                     </form>
                 </div>
             </div>

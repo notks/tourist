@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +10,7 @@ export class CardeditableComponent implements OnInit {
   @Input() l:any;
   @Input() index:any
   msg:string=""
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
   if(this.l.status=='active'){
@@ -39,5 +40,37 @@ export class CardeditableComponent implements OnInit {
  window.location.reload()
 
   }
+  upload(file:any):any{
+
+    const fileInput = document.querySelector('#your-file-input') ;
+    const formData = new FormData();
+    
+    formData.append('file', file.files[0]);
+    let headers = new Headers();
+    headers.append('Content-Type', "undefined");
+  
+    this.http.post("http://127.0.0.1:8080/picture/upload", formData, {
+      
+        headers: {'Content-Type': "undefined"}
+    }).subscribe(data=>console.log(data))
+   
+}
+
+
+/*
+    const options: RequestInit= {
+      method: 'POST',
+      body: formData,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  }
+    };
+   */
+   // delete options.headers['Content-Type'];
+   //fetch("http://127.0.0.1:8080/picture/upload",{method:"post",body:formData})
+//console.log(files.files[0])
+    
+    
+  //}
 
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import { Location } from 'src/app/model/Location';
 
 
 @Component({
@@ -18,7 +17,6 @@ export class CarouselComponent implements OnInit {
       this.data=null
     }
    
-    console.log(this.data)
   }
 
 }

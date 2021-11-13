@@ -1,29 +1,41 @@
+<div class="card" style="width: 301px">
+  <app-carousel [data]="l.url" index="{{ index }}"></app-carousel>
 
-  <div class="card" style="width: 301px">
-    <app-carousel [data]="l.url" index="{{ index }}"></app-carousel>
+  <div class="card-body">
+    <h5 class="card-title">{{ l.name }}</h5>
 
-    <div class="card-body">
-        <h5 class="card-title">{{l.name}}</h5>
+    <p>{{ l.description }}</p>
+    <p>{{ l.istatus }}</p>
+    {{l.id}}
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    <form
+      #form
+      enctype="multipart/form-data"
+      method="post"
+      action="http://127.0.0.1:8080/picture/upload"
+      target="dummyframe"
       
-         <p>{{l.description}}</p>
-         <p>{{l.istatus}}</p>
-        
-        <p>Long:{{l.long}} Lat:{{l.lat}}</p>
-        <div class="row">
-            <div class="col">
-<button class="btn btn-danger" (click)="changeStatus();">{{this.msg}}</button>
+    >
+      <input type="number"  [value]="l.id" hidden name="locationId" /><input
+        type="file"
+        name="file"
+        id="file"
+        #file
+        (change)="form.submit()"
+      />
+    </form>
 
-            </div>
-            <div class="col">
-<button class="btn btn-danger" (click)="delete()">Delete</button>
+    <p>Long:{{ l.long }} Lat:{{ l.lat }}</p>
 
-            </div>
-        </div>
-
-
-
-
-
-   
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-danger" (click)="changeStatus()">
+          {{ this.msg }}
+        </button>
+      </div>
+      <div class="col">
+        <button class="btn btn-danger" (click)="delete()">Delete</button>
+      </div>
     </div>
   </div>
+</div>
