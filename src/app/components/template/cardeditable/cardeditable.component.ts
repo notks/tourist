@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import {url} from '../../../../constants'
 
 @Component({
   selector: 'app-cardeditable',
@@ -25,52 +27,32 @@ export class CardeditableComponent implements OnInit {
   }
   async changeStatus():Promise<any>{
     if(this.l.status=='active'){
-     await fetch(`http://127.0.0.1:8080/locations/status?id=${this.l.id}&action=deactivate`)
+     await fetch(`${url}/protected/locations/status?id=${this.l.id}&action=deactivate`,{method:"PUT", headers:{
+      "Authorization":`Bearer ${localStorage.getItem("authToken")}`}})
       window.location.reload()
 
     }
      else{
-      await fetch(`http://127.0.0.1:8080/locations/status?id=${this.l.id}&action=activate`)
+      await fetch(`${url}/protected/locations/status?id=${this.l.id}&action=activate`,{method:"PUT", headers:{
+        "Authorization":`Bearer ${localStorage.getItem("authToken")}`}})
       window.location.reload()
 
     }
   }
   async delete():Promise<any>{
-    await fetch(`http://127.0.0.1:8080/locations/delete?id=${this.l.id}`)
+    await fetch(`${url}/protected/locations?id=${this.l.id}`,{method:"DELETE", headers:{
+      "Authorization":`Bearer ${localStorage.getItem("authToken")}`
+    }})
  window.location.reload()
 
   }
-  upload(file:any):any{
+ 
 
-    const fileInput = document.querySelector('#your-file-input') ;
-    const formData = new FormData();
-    
-    formData.append('file', file.files[0]);
-    let headers = new Headers();
-    headers.append('Content-Type', "undefined");
-  
-    this.http.post("http://127.0.0.1:8080/picture/upload", formData, {
-      
-        headers: {'Content-Type': "undefined"}
-    }).subscribe(data=>console.log(data))
-   
+
+
+reload():void{
+
+console.log("aaaaaaaaaa")
+  window.location.reload()
 }
-
-
-/*
-    const options: RequestInit= {
-      method: 'POST',
-      body: formData,
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  }
-    };
-   */
-   // delete options.headers['Content-Type'];
-   //fetch("http://127.0.0.1:8080/picture/upload",{method:"post",body:formData})
-//console.log(files.files[0])
-    
-    
-  //}
-
 }

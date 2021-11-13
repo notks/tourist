@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { convertToObject } from 'typescript';
+import {url} from '../../../../constants'
 
 @Component({
   selector: 'app-card',
@@ -15,7 +16,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
    
-    fetch(`http://127.0.0.1:8080/rating?id=${this.l.id}`)
+    fetch(`${url}/rating?id=${this.l.id}`)
       .then((response) => response.json())
       .then((rating) => {
         this.AverageRating = rating;
@@ -24,7 +25,7 @@ export class CardComponent implements OnInit {
 
   updateRating(rating: any): void {
     fetch(
-      `http://127.0.0.1:8080/rating/update?id=${this.l.id}&rating=${rating}`,
+      `${url}/rating/update?id=${this.l.id}&rating=${rating}`,
       { method: 'POST' }
     )
       .then((response) => {if(response.ok)window.location.reload()})
