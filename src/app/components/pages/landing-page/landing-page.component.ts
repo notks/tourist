@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Location } from '../../../model/Location';
+import {url} from '../../../../constants'
 
 @Component({
   selector: 'app-landing-page',
@@ -17,11 +18,11 @@ export class LandingPageComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    fetch('http://127.0.0.1:8080/locations/')
+    fetch(`${url}/locations/`)
       .then((response) => response.json())
       .then((response) => {
         response.forEach(async (location: any) => {
-          await fetch(`http://127.0.0.1:8080/image?id=${location.id}`)
+          await fetch(`${url}/image?id=${location.id}`)
             .then((urls) => urls.json())
             .then((imageurl) => {
               location.url = imageurl.url;
@@ -35,7 +36,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   onClick(query:any):void{
-    fetch(`http://127.0.0.1:8080/locations/name/${query}`)
+    fetch(`${url}/locations/name/${query}`)
       .then((response) => response.json())
       .then((response) => {
         console.log(response)
@@ -46,7 +47,7 @@ export class LandingPageComponent implements OnInit {
           this.Locations=null;
         }
         response.forEach(async (location: any) => {
-          await fetch(`http://127.0.0.1:8080/picture?id=${location.id}`)
+          await fetch(`${url}/image?id=${location.id}`)
             .then((urls) => urls.json())
             .then((imageurl) => {
               location.url = imageurl.url;
@@ -59,14 +60,14 @@ export class LandingPageComponent implements OnInit {
     console.log(query)
   }
   select(status:any):void{
-    fetch(`http://127.0.0.1:8080/locations/importance/${status}`)
+    fetch(`${url}/locations/importance/${status}`)
     .then((response) => response.json())
     .then((response) => {
       if(!response){
         this.Locations=[]
       }
       response.forEach(async (location: any) => {
-        await fetch(`http://127.0.0.1:8080/picture?id=${location.id}`)
+        await fetch(`${url}/image?id=${location.id}`)
           .then((urls) => urls.json())
           .then((imageurl) => {
             location.url = imageurl.url;

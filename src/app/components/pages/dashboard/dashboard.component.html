@@ -1,8 +1,11 @@
 <div *ngIf="auth">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex; justify-content: space-between;">
-        <a class="navbar-brand" href="#">{{email}}</a>
-              <button class="btn btn-outline-danger" (click)="logOut()">Log out</button>
-           
+        <a class="navbar-brand" href="/">{{email}}</a>
+        <div style="width: 30%; display: flex; justify-content: space-between;">
+            <button class="btn btn-outline-success" (click)="open(content)">Add</button>
+            <button class="btn btn-outline-danger" (click)="logOut()">Log out</button>
+
+        </div>
       </nav>
   <div class="container_grid" >
   <div *ngFor="let location of Locations; index as i" style="margin: 10px">
@@ -10,50 +13,7 @@
   </div>
 </div>
 <div>
-<form style="display: flex;flex-direction: column;
-justify-content: center;
-align-items: center;">
-    <div class="row">
-        <input type="text" class="form-control" name="name" id="name" placeholder="name">
 
-    </div><br>
-    <div class="row">
-        <input type="text" class="form-control" maxlength="255" name="description" id="description" placeholder="description">
-
-    </div><br>
-    <div class="row">
-        <input type="number" class="form-control" name="long" id="long" placeholder="longitude">
-
-    </div><br>
-    <div class="row">
-        <input type="number" class="form-control" name="lat" id="lat" placeholder="latitude">
-
-    </div><br>
-
-    <div class="row">
-        <select class="form-control" >
-        <option selected hidden>Class</option>
-        <option>znamenito</option>
-        <option>veoma znamenito</option>
-        <option>nezaobilazno</option>
-
-    </select>
-    </div><br>
-    <div class="row" >
-          <select class="form-control" name="country">
-        <option selected hidden>Country</option>
-        
-    </select>
-    </div>
-    <br>
-  <div class="row">
-      <select class="form-control" name="city">
-        <option selected hidden>City</option>
-
-    </select>
-  </div><br>
-    <button class="btn btn-success" >Save</button>
-</form>
 
 </div>
 </div>
@@ -62,3 +22,108 @@ align-items: center;">
 
     
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add new location</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="display: flex; align-items: center; flex-direction: column;">
+        <div style="display: flex;flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+">
+            <div class="row" style="width: 80%;" >
+                <input type="text" class="form-control" #locationname placeholder="Location name">
+        
+            </div><br>
+            <div class="row" style="width: 80%;">
+                <input type="text" class="form-control" maxlength="255" #description name="description" id="description" placeholder="Description">
+        
+            </div><br>
+            <div class="row" style="width: 80%;">
+                <input type="number" class="form-control" #long placeholder="longitude">
+        
+            </div><br>
+            <div class="row" style="width: 80%;">
+                <input type="number" class="form-control" #lat placeholder="latitude">
+        
+            </div><br>
+        
+            <div class="row" style="width: 80%;">
+                <select  #importance class="form-control" >
+              
+                <option selected>znamenito</option>
+                <option>veoma znamenito</option>
+                <option>nezaobilazno</option>
+        
+            </select>
+            </div><br>
+            <div class="row" style="width: 80%;" >
+                  <select #select1 class="form-control" name="country" (change)="getCities(select1.value)">
+                <option  selected hidden>Country</option>
+                <option *ngFor="let country of Countries"   [value]="country.id" >{{country.name}}</option>
+                
+            </select>
+            </div>
+            <br>
+          <div class="row" style="width: 80%;">
+              <select #select2 class="form-control" name="city">
+                <option selected hidden>Cities</option>
+            
+                <option *ngFor="let city of Cities" [value]="city.id"   >{{city.name}}</option>
+
+        
+            </select>
+          </div><br>
+            <button class="btn btn-success"  (click)="saveLocation(locationname.value,description.value,long.value,lat.value,importance.value,select1.value,select2.value)">Save</button>
+        </div>
+        
+        <hr>
+<div style="display: flex;flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 80%;
+">
+<div class="row" style="width: 80%;">
+    <input type="text" name="countryName" #countryName class="form-control" placeholder="Country name">
+
+</div>
+<br>
+    <div class="row">
+        <button (click)="saveCountry(countryName.value)" class="btn btn-success">Save</button>
+    
+    </div>
+</div>
+<hr>
+<div style="display: flex;flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 80%;
+">
+    <div class="row"style="width: 80%;">    <input type="text" name="cityname" #cityName class="form-control" placeholder="City name">
+    </div><br>
+<div class="row" style="width: 80%;"> <select #select3 name="countryid" class="form-control">
+    <option>Select country</option>
+    <option *ngFor="let country of Countries"   [value]="country.id" >{{country.name}}</option>
+
+</select></div><br>
+<div class="row" > <button (click)="saveCity(select3.value,cityName.value)" class="btn btn-success">Save</button></div><br>
+   
+   
+</div>
+
+
+    </div>
+    <div class="modal-footer">
+    
+    </div>
+  </ng-template>
+  
+  
+  
+

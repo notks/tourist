@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './components/pages/admin/admin.component';
+
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { LandingPageComponent } from './components/pages/landing-page/landing-page.component';
 import { LoginComponent } from './components/pages/login/login.component';

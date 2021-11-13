@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {url} from '../../../../constants'
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 msg:string=""
-  constructor(private router:Router) { }
+  constructor(private router:Router) {   let token = localStorage.getItem('authToken');
+  if (token) {
+    router.navigate(['/dashboard']);
+  }}
 
   ngOnInit(): void {
   }
   login(email:string,password:string):void{
    
-fetch(`http://127.0.0.1:8080/login?email=${email}&pwd=${password}`).then(res=>res.json()).then(response=>{
+fetch(`${url}/login?email=${email}&pwd=${password}`,{method:"POST"}).then(res=>res.json()).then(response=>{
   if(response.token){
     localStorage.setItem("authToken",response.token)
     

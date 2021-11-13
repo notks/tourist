@@ -1,18 +1,20 @@
 <div class="card" style="width: 301px">
   <app-carousel [data]="l.url" index="{{ index }}"></app-carousel>
 
-  <div class="card-body">
+  <div class="card-body" style="font-size: small;">
     <h5 class="card-title">{{ l.name }}</h5>
-
-    <p>{{ l.description }}</p>
-    <p>{{ l.istatus }}</p>
-    {{l.id}}
-    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    <p class="card-text" >
+      {{l.description}}
+     </p>
+     <p>Location:{{l.country}},{{l.city}}</p>
+     <p>Category: {{l.istatus}}</p>
+     <p>Long:{{l.long}} Lat:{{l.lat}}</p>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;" (change)="reload()"></iframe>
     <form
       #form
       enctype="multipart/form-data"
       method="post"
-      action="http://127.0.0.1:8080/picture/upload"
+      action="http://127.0.0.1:8080/image/protected"
       target="dummyframe"
       
     >

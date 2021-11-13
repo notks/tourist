@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './components/pages/landing-page/landing-page.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { AdminComponent } from './components/pages/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/template/carousel/carousel.component';
@@ -19,12 +18,11 @@ import { CardeditableComponent } from './components/template/cardeditable/carded
     AppComponent,
     LandingPageComponent,
     LoginComponent,
-    AdminComponent,
     CarouselComponent,
     CardComponent,
     RegisterComponent,
     DashboardComponent,
-    CardeditableComponent
+    CardeditableComponent,
   ],
   imports: [
     BrowserModule,
